@@ -52,7 +52,7 @@ args     = parser.parse_args()
 # Set the constants
 slot     = args.slot
 
-path     = os.getcwd()+'/ipmc/build/wrappers/bin/x86_64-linux-dbg/'
+path     = os.getcwd()+'/../build/wrappers/bin/x86_64-linux-dbg/'
 
 cmds = [ 'tfo_tmr_config --freqsyn %s/%d 1 0x3e 0x35 0x6e0 0xd75',
          'tfo_tmr_config --channel %s/%d 0 1 1 3 1',

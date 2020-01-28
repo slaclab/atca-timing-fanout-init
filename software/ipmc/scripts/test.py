@@ -46,7 +46,7 @@ parser.add_argument(
     help="Slot number",
 )
 
-path     = os.getcwd()+'/ipmc/build/wrappers/bin/x86_64-linux-dbg/'
+path     = os.getcwd()+'/../build/wrappers/bin/x86_64-linux-dbg/'
 
 # Get the arguments
 args     = parser.parse_args()

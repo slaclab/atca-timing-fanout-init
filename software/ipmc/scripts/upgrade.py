@@ -34,40 +34,40 @@ parser.add_argument(
     "--fru", 
     type=str,
     default='../images/pc_379_396_18_c04.bin',
-#    required=True,
+    #    required=True,
     help="path to FRU (.BIN) file",
-)
+    )
 
 parser.add_argument(
     "--tag", 
     type=str,
     required=True,
     help="Product Asset Tag",
-)
+    )
 
 parser.add_argument(
     "--fw", 
     type=str,
     default='../images/ipmc_tfo_fw.img',
-#    required=True,
+    #    required=True,
     help="path to FRU (.BIN) file",
-)
+    )
 
 parser.add_argument(
     "--shm", 
     type=str,
     default='shm-b084-sp15',
-#    required=True,
+    #    required=True,
     help="Shelf manager name",
-)
+    )
 
 parser.add_argument(
     "--slot", 
     type=int,
     default=7,
-#    required=True,
+    #    required=True,
     help="Slot number",
-)
+    )
 
 # Get the arguments
 args     = parser.parse_args()
@@ -93,7 +93,7 @@ time.sleep(0.1)
 print ( retVar[1] )
 if ( fruName not in retVar[1]): 
     raise ValueError, "Invalid FRU detected.  Does not match with FRU's filename" % (fruName, retVar[1])
-    
+
 # Check FW's file extension 
 if ( not args.fw.endswith('.img') ):
     raise ValueError, "Invalid fw file extension (%s).  Should be .img file extension." % (args.fw)
@@ -103,7 +103,7 @@ subprocess.check_call( ( "ipmitool -I lan -H %s -t 0x%x -b 0 -A NONE hpm upgrade
 time.sleep(0.1)
 
 # Print that the configuration of IPMC passed.
- subprocess.check_call( ( "cba_cold_data_reset %s/%d" % (args.shm,slot) ) , shell=True)   
+subprocess.check_call( ( "cba_cold_data_reset %s/%d" % (args.shm,slot) ) , shell=True)   
 
 print ( "\nSUCESSFULLY LOADED IPMC CONFIGURATION!\n" )
 
