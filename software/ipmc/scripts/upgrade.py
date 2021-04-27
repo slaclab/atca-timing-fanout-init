@@ -56,7 +56,7 @@ parser.add_argument(
 parser.add_argument(
     "--shm", 
     type=str,
-    default='shm-b084-sp15',
+    default='shm-b084-sp17',
     #    required=True,
     help="Shelf manager name",
     )
@@ -64,7 +64,7 @@ parser.add_argument(
 parser.add_argument(
     "--slot", 
     type=int,
-    default=7,
+    default=6,
     #    required=True,
     help="Slot number",
     )
@@ -99,7 +99,8 @@ if ( not args.fw.endswith('.img') ):
     raise ValueError, "Invalid fw file extension (%s).  Should be .img file extension." % (args.fw)
 
 # Load the FW file
-subprocess.check_call( ( "ipmitool -I lan -H %s -t 0x%x -b 0 -A NONE hpm upgrade %s activate all" % (args.shm,0x80+2*slot,args.fw) ) , shell=True)
+#subprocess.check_call( ( "ipmitool -I lan -H %s -t 0x%x -b 0 -A NONE hpm upgrade %s activate all" % (args.shm,0x80+2*slot,args.fw) ) , shell=True)
+subprocess.check_call( ( "ipmitool -I lan -H %s -t 0x%x -b 0 -A NONE hpm upgrade %s force activate all" % (args.shm,0x80+2*slot,args.fw) ) , shell=True)
 time.sleep(0.1)
 
 # Print that the configuration of IPMC passed.
